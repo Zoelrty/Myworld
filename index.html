@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My World</title>
+  <meta name="description" content="Personal website">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home">My World</a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button id="theme-toggle" aria-label="Toggle theme">◐</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <h1>Hi, I'm <span class="accent">Your Name</span>.</h1>
+      <p>Welcome to my world. I make things and write about them here.</p>
+      <a class="btn" href="#projects">See my work</a>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>Write a few sentences about yourself, what you do, and what you care about.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+        <article class="card"><h3>Project One</h3><p>A short description of this project.</p></article>
+        <article class="card"><h3>Project Two</h3><p>A short description of this project.</p></article>
+        <article class="card"><h3>Project Three</h3><p>A short description of this project.</p></article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Say hello: <a href="mailto:you@example.com">you@example.com</a></p>
+    </section>
+  </main>
+
+  <footer><p>&copy; <span id="year"></span> Your Name</p></footer>
+  <script src="assets/script.js"></script>
+</body>
+</html>
