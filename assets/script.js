@@ -11,6 +11,8 @@ const I18N = {
     hero_btn: 'See my work',
     about_h: 'About',
     about_p: 'I\'m Jeremy, a project manager for the filter.',
+    about_letter: 'Read the letter',
+    back_home: '&larr; Back to home',
     proj_h: 'Projects',
     proj1_t: 'Project One', proj2_t: 'Project Two', proj3_t: 'Project Three',
     proj_d: 'A short description of this project.',
@@ -20,7 +22,7 @@ const I18N = {
     contact_h: 'Contact',
     contact_p: 'Say hello:',
     a_date: 'November 2026',
-    a_intro: 'This article summarises the position set out in my letter "Tanggapan atas Surat Tanggal 6 November 2026" (written in Indonesian).',
+    a_intro: 'This article summarises the position set out in my letter "Tanggapan atas Surat Tanggal 6 November 2026" (written in Indonesian). <a href="surat-tanggapan.html">Read the full letter</a>.',
     h_bg: 'Background',
     p_bg1: 'In March 2023 I entered into a loan agreement with PT Multi Makmur ("PTMM"). The principal was Rp2,000,000,000, and the agreement also provided for a commission on certain trade transactions. Under Article 6, the loan was due for repayment by 1 June 2023. More than three years later, final settlement has not been reached.',
     p_bg2: 'On 6 November 2026 I received a letter proposing that repayment begin on 25 March 2027, after a further transaction (referred to as "CMG") was planned for February 2027. This article explains how I responded and why.',
@@ -58,6 +60,8 @@ const I18N = {
     hero_btn: 'Lihat karya saya',
     about_h: 'Tentang',
     about_p: 'Saya Jeremy, manajer proyek untuk filter.',
+    about_letter: 'Baca surat',
+    back_home: '&larr; Kembali ke beranda',
     proj_h: 'Proyek',
     proj1_t: 'Proyek Satu', proj2_t: 'Proyek Dua', proj3_t: 'Proyek Tiga',
     proj_d: 'Deskripsi singkat tentang proyek ini.',
@@ -67,7 +71,7 @@ const I18N = {
     contact_h: 'Kontak',
     contact_p: 'Sapa saya:',
     a_date: 'November 2026',
-    a_intro: 'Artikel ini merangkum sikap yang saya sampaikan dalam surat "Tanggapan atas Surat Tanggal 6 November 2026".',
+    a_intro: 'Artikel ini merangkum sikap yang saya sampaikan dalam surat "Tanggapan atas Surat Tanggal 6 November 2026". <a href="surat-tanggapan.html">Baca surat lengkap</a>.',
     h_bg: 'Latar Belakang',
     p_bg1: 'Pada Maret 2023 saya membuat perjanjian pinjaman dengan PT Multi Makmur ("PTMM"). Pokok pinjaman sebesar Rp2.000.000.000, dan perjanjian tersebut juga mengatur pembagian komisi atas transaksi perdagangan tertentu. Berdasarkan Pasal 6, pinjaman wajib dikembalikan paling lambat 1 Juni 2023. Lebih dari tiga tahun kemudian, penyelesaian akhir belum tercapai.',
     p_bg2: 'Pada 6 November 2026 saya menerima surat yang mengusulkan agar pengembalian dimulai pada 25 Maret 2027, setelah transaksi lanjutan (disebut "CMG") direncanakan pada Februari 2027. Artikel ini menjelaskan bagaimana saya menanggapinya dan alasannya.',
@@ -151,7 +155,7 @@ function startSpeech() {
   speaking = true;
   chunks.forEach((text, i) => {
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = I18N[lang].speech;
+    u.lang = main.dataset.speech || I18N[lang].speech;
     if (i === chunks.length - 1) u.onend = () => { speaking = false; setSpeakLabel(); };
     u.onerror = () => { speaking = false; setSpeakLabel(); };
     synth.speak(u);
