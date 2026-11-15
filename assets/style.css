@@ -21,3 +21,7 @@ section{padding:3rem 0}
 .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem}
 .card h3{margin-top:0}
 footer{text-align:center;padding:2rem;color:var(--muted);border-top:1px solid var(--border)}
+select#lang,.tool{background:none;border:1px solid var(--border);color:var(--fg);border-radius:6px;cursor:pointer;padding:.2rem .5rem;font:inherit;font-size:.9rem}
+select#lang option{color:#1a1a1a}
+.site-header{flex-wrap:wrap;gap:.5rem}
+nav{flex-wrap:wrap}

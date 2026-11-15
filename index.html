@@ -11,47 +11,52 @@
   <header class="site-header">
     <a class="brand" href="#home">Jeremy</a>
     <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#articles">Articles</a>
-      <a href="#contact">Contact</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#projects" data-i18n="nav_projects">Projects</a>
+      <a href="#articles" data-i18n="nav_articles">Articles</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+      <select id="lang" aria-label="Language">
+        <option value="en">EN</option>
+        <option value="id">ID</option>
+      </select>
+      <button id="speak" class="tool" data-i18n="sound_play">🔊 Listen</button>
       <button id="theme-toggle" aria-label="Toggle theme">◐</button>
     </nav>
   </header>
 
   <main>
     <section id="home" class="hero">
-      <h1>Hi, I'm <span class="accent">Jeremy</span>.</h1>
-      <p>Project manager for the filter.</p>
-      <a class="btn" href="#projects">See my work</a>
+      <h1 data-i18n="hero_title">Hi, I'm <span class="accent">Jeremy</span>.</h1>
+      <p data-i18n="hero_sub">Project manager for the filter.</p>
+      <a class="btn" href="#projects" data-i18n="hero_btn">See my work</a>
     </section>
 
     <section id="about">
-      <h2>About</h2>
-      <p>I'm Jeremy, a project manager for the filter.</p>
-      <p><a href="https://raw.githubusercontent.com/Zoelrty/Myworld/ccr-f332aac5-ipmrj4/assets/enlarged_doc.pdf" target="_blank" rel="noopener">View the document (PDF)</a></p>
+      <h2 data-i18n="about_h">About</h2>
+      <p data-i18n="about_p">I'm Jeremy, a project manager for the filter.</p>
+      <p><a href="https://raw.githubusercontent.com/Zoelrty/Myworld/ccr-f332aac5-ipmrj4/assets/enlarged_doc.pdf" target="_blank" rel="noopener" data-i18n="about_pdf">View the document (PDF)</a></p>
     </section>
 
     <section id="projects">
-      <h2>Projects</h2>
+      <h2 data-i18n="proj_h">Projects</h2>
       <div class="grid">
-        <article class="card"><h3>Project One</h3><p>A short description of this project.</p></article>
-        <article class="card"><h3>Project Two</h3><p>A short description of this project.</p></article>
-        <article class="card"><h3>Project Three</h3><p>A short description of this project.</p></article>
+        <article class="card"><h3 data-i18n="proj1_t">Project One</h3><p data-i18n="proj_d">A short description of this project.</p></article>
+        <article class="card"><h3 data-i18n="proj2_t">Project Two</h3><p data-i18n="proj_d">A short description of this project.</p></article>
+        <article class="card"><h3 data-i18n="proj3_t">Project Three</h3><p data-i18n="proj_d">A short description of this project.</p></article>
       </div>
     </section>
 
     <section id="articles">
-      <h2>Articles</h2>
+      <h2 data-i18n="art_h">Articles</h2>
       <article class="card">
-        <h3><a href="articles/loan-response.html">Responding to a Delayed Loan Repayment Proposal</a></h3>
-        <p>A summary of my November 2026 reply to a proposal to push repayment of an overdue loan into 2027.</p>
+        <h3><a href="articles/loan-response.html" data-i18n="art1_t">Responding to a Delayed Loan Repayment Proposal</a></h3>
+        <p data-i18n="art1_d">A summary of my November 2026 reply to a proposal to push repayment of an overdue loan into 2027.</p>
       </article>
     </section>
 
     <section id="contact">
-      <h2>Contact</h2>
-      <p>Say hello: <a href="mailto:you@example.com">you@example.com</a></p>
+      <h2 data-i18n="contact_h">Contact</h2>
+      <p><span data-i18n="contact_p">Say hello:</span> <a href="mailto:you@example.com">you@example.com</a></p>
     </section>
   </main>
 
