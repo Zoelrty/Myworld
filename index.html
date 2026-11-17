@@ -6,6 +6,24 @@
   <title>Jeremy</title>
   <meta name="description" content="Personal website">
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+.reports{display:grid;gap:1rem;margin-top:1rem}
+.report{display:flex;align-items:center;gap:1.2rem;padding:1.4rem 1.5rem;background:var(--card);border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--fg)}
+.report:hover{border-color:var(--accent)}
+.report .num{font-size:1.6rem;font-weight:700;color:var(--accent);min-width:3.5rem}
+.report .info{display:flex;flex-direction:column;flex:1;gap:.1rem}
+.report .info strong{font-size:1.2rem}
+.report small{color:var(--muted)}
+.report .go{font-size:1.5rem;color:var(--muted)}
+details.category{margin:0 0 1rem}
+details.category>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;background:var(--card);border:1px solid var(--border);border-radius:12px;font-size:1.2rem;font-weight:700;color:var(--fg)}
+details.category>summary::-webkit-details-marker{display:none}
+details.category>summary:hover{border-color:var(--accent)}
+details.category>summary .count{font-weight:400;font-size:.9rem;color:var(--muted);margin-left:.6rem}
+details.category>summary::after{content:"+";font-size:1.6rem;color:var(--accent)}
+details.category[open]>summary::after{content:"\2212"}
+details.category[open]>summary{border-color:var(--accent)}
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -19,32 +37,24 @@
       <p>Project manager for the filter.</p>
     </section>
 
-    <section id="reports" aria-label="Report index">
+    <section id="reports">
       <h2>Reports</h2>
-      <h3 class="category">Power BI</h3>
-      <div class="reports">
-        <a class="report" href="sales-report.html">
-          <span class="num">R01</span>
-          <span class="info"><strong>Sales Report 2026</strong><small>Monthly sales from the ERP (PFIT &amp; FITT).</small><small>R01-T01</small></span>
-          <span class="go" aria-hidden="true">→</span>
-        </a>
-        <a class="report" href="sales.html">
-          <span class="num">R02</span>
-          <span class="info"><strong>Sales Charts</strong><small>Bar charts of net sales by month, quarter and year.</small><small>R02-C01 Monthly · R02-C02 Quarterly · R02-C03 Yearly</small></span>
-          <span class="go" aria-hidden="true">→</span>
-        </a>
-        <a class="report" href="reports/crm.html">
-          <span class="num">R03</span>
-          <span class="info"><strong>CRM Report</strong><small>Customers, leads and pipeline.</small><small>R03-T01</small></span>
-          <span class="go" aria-hidden="true">→</span>
-        </a>
-        <a class="report" href="reports/segmentation.html">
-          <span class="num">R04</span>
-          <span class="info"><strong>Sales Segmentation Report</strong><small>Revenue by customer size, customer group and top 10 customers.</small><small>R04-C01 Size · R04-C02 Monthly by group · R04-C03 Top 10</small></span>
-          <span class="go" aria-hidden="true">→</span>
-        </a>
-      </div>
-      <!-- To add a report: copy one <a class="report"> block, use the next R number. To add a category: copy the <h3 class="category"> and the <div class="reports"> below it. -->
+
+      <details class="category">
+        <summary><span>Power BI<span class="count">3 reports</span></span></summary>
+        <div class="reports">
+          <a class="report" href="sales-report.html"><span class="num">R01</span><span class="info"><strong>Sales Report 2026</strong><small>Monthly sales from the ERP (PFIT &amp; FITT).</small><small>R01-T01</small></span><span class="go" aria-hidden="true">&rarr;</span></a>
+          <a class="report" href="sales.html"><span class="num">R02</span><span class="info"><strong>Sales Charts</strong><small>Bar charts of net sales by month, quarter and year.</small><small>R02-C01 Monthly &middot; R02-C02 Quarterly &middot; R02-C03 Yearly</small></span><span class="go" aria-hidden="true">&rarr;</span></a>
+          <a class="report" href="reports/segmentation.html"><span class="num">R04</span><span class="info"><strong>Sales Segmentation Report</strong><small>Revenue by customer size, customer group and top 10 customers.</small><small>R04-C01 Size &middot; R04-C02 Monthly by group &middot; R04-C03 Top 10</small></span><span class="go" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </details>
+
+      <details class="category">
+        <summary><span>CRM<span class="count">1 report</span></span></summary>
+        <div class="reports">
+          <a class="report" href="reports/crm.html"><span class="num">R03</span><span class="info"><strong>CRM Report</strong><small>Customers, leads and pipeline.</small><small>R03-T01</small></span><span class="go" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </details>
     </section>
 
     <section id="about">

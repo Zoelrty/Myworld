@@ -20,3 +20,5 @@ Every time you update or deploy the website:
 - Report pages live in `reports/`. Update the existing index in the same change, then deploy the full site.
 - Publish to Vercel project `myworld`; also commit and push to the working branch.
 
+- The real index uses collapsible `<details class="category">` groups: "Power BI" (R01, R02, R04) and "CRM" (R03). Add new reports inside the matching category and update its `count`.
+- Live site is deployed by upload (not git). Deploy a preview, check it, then redeploy to production with `deploymentId` + `target: production` (request_promote returns 422 here).
