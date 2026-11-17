@@ -17,7 +17,26 @@ section{padding:3rem 0}
 .hero h1{font-size:clamp(2rem,6vw,3.5rem);margin:0 0 1rem}
 .accent{color:var(--accent)}
 .btn{display:inline-block;margin-top:1rem;padding:.7rem 1.2rem;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none}
+.btn-ghost{background:transparent;color:var(--accent);border:1px solid var(--accent);margin-left:.5rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
 .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem}
 .card h3{margin-top:0}
 footer{text-align:center;padding:2rem;color:var(--muted);border-top:1px solid var(--border)}
+.reports{display:grid;gap:1rem}
+.report{display:flex;align-items:center;gap:1.2rem;padding:1.4rem 1.5rem;background:var(--card);border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--fg);transition:border-color .15s,transform .15s}
+.report:hover{border-color:var(--accent);transform:translateY(-2px)}
+.report .num{font-size:1.6rem;font-weight:700;color:var(--accent);min-width:3.5rem}
+.report .info{display:flex;flex-direction:column;flex:1;gap:.1rem}
+.report .info strong{font-size:1.2rem}
+.report small{color:var(--muted)}
+.report .go{font-size:1.5rem;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:1fr;gap:1rem;margin:1.5rem 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem}
+.kpi small{display:block;color:var(--muted)}.kpi strong{font-size:1.5rem}
+h2{margin-top:2rem}
+.chart .row{display:grid;grid-template-columns:5.5rem 1fr 6rem;gap:.6rem;align-items:center;margin:.3rem 0;font-size:.9rem}
+.chart .bar{background:var(--border);border-radius:4px;height:14px;overflow:hidden}
+.chart .bar i{display:block;height:100%;background:var(--accent)}
+.chart.alt .bar i{background:#f59e0b}
+.chart .val{text-align:right;font-variant-numeric:tabular-nums}
+.category{margin:0 0 1rem;font-size:1.1rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
