@@ -1,0 +1,62 @@
+<title>Sales Segmentation Report</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@600&display=swap">
+<style>
+/* Layout: single column of three chart panels under a headline strip */
+:root{--bg:#f6f7f9;--panel:#fff;--fg:#14202e;--mut:#5b6877;--grid:#e3e7ec;--c1:#1f6f8b;--c2:#d98e2b;--c3:#7a5ea8;--s1:#cfe3ec;--s2:#7fb1c5;--s3:#1f6f8b;--surf:#fff;
+--fd:'Space Grotesk',system-ui,sans-serif;--fb:Inter,system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f161d;--panel:#18222c;--fg:#e8edf2;--mut:#98a5b3;--grid:#2a3743;--c1:#5fb3d0;--c2:#e8a94d;--c3:#a98bd6;--s1:#2c4a58;--s2:#468aa5;--s3:#7cc4dc;--surf:#18222c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f161d;--panel:#18222c;--fg:#e8edf2;--mut:#98a5b3;--grid:#2a3743;--c1:#5fb3d0;--c2:#e8a94d;--c3:#a98bd6;--s1:#2c4a58;--s2:#468aa5;--s3:#7cc4dc;--surf:#18222c;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--fb);padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+h1{font:600 28px/1.15 var(--fd);margin:0;text-wrap:balance}h2{font:600 17px var(--fd);margin:0 0 4px}
+.sub{color:var(--mut);margin:4px 0 0;font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi,.panel{background:var(--panel);border-radius:10px;padding:16px;min-width:0}
+.kpi b{display:block;font:600 24px var(--fd);font-variant-numeric:tabular-nums}.kpi span{color:var(--mut);font-size:12px}
+.panel p{margin:0 0 12px;color:var(--mut);font-size:13px}
+svg{width:100%;height:auto;display:block}svg text{fill:var(--mut);font:11px var(--fb)}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mut);margin-bottom:8px}.leg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
+#tip{position:fixed;pointer-events:none;background:var(--fg);color:var(--bg);font-size:12px;padding:6px 8px;border-radius:6px;opacity:0;z-index:5;max-width:240px}
+.src{color:var(--mut);font-size:12px}
+</style>
+<main>
+<header><h1>Sales Segmentation Report</h1><p class="sub">Submitted sales invoices, 18 Nov 2025 – 9 Nov 2026 · ERPNext (Filtec) · amounts in IDR</p></header>
+<div class="kpis" id="kpis"></div>
+<section class="panel"><h2>Revenue by customer size</h2><p>Customers grouped by their total billing over the period.</p><div id="c1"></div></section>
+<section class="panel"><h2>Monthly revenue by customer group</h2><p>Customer group as recorded on the invoice. “Unassigned” means no group is set on the customer.</p><div class="leg" id="l2"></div><div id="c2"></div></section>
+<section class="panel"><h2>Top 10 customers</h2><p>Share of total revenue shown beside each bar.</p><div id="c3"></div></section>
+<p class="src">Source: Sales Invoice (docstatus = submitted), 175 invoices, 75 customers. Territory is blank on most invoices, so it is not used for segmentation.</p>
+</main>
+<div id="tip"></div>
+<script>
+const D={"tiers": [{"name": "Key accounts (\u2265 Rp 250 jt)", "customers": 10, "revenue": 5110990216, "invoices": 28}, {"name": "Mid accounts (Rp 50\u2013250 jt)", "customers": 17, "revenue": 2233082195, "invoices": 41}, {"name": "Small accounts (< Rp 50 jt)", "customers": 48, "revenue": 840886359, "invoices": 106}], "months": ["2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09", "2026-10", "2026-11"], "monthly": {"Commercial": [15939600, 24469062, 22196115, 235810620, 396716220, 719810580, 109263682, 756250357, 1022669529, 718992170, 996613829, 985602300, 355005750], "Unassigned": [126179250, 168398100, 331106340, 90705050, 120069810, 152269800, 94572000, 241349520, 15817500, 0, 199365435, 157509000, 91297500], "End User": [0, 0, 0, 0, 0, 0, 34981650, 1998000, 0, 0, 0, 0, 0]}, "top": [["PT. PLN INDONESIA POWER UBP BALI", 1607252516], ["PT Pertamina EP Cepu", 588300000], ["PT. TANGGAMUS ELECTRIC POWER", 474636000], ["PT Harlyn Energy Indonesia", 471783300], ["PT PLN Nusantara Power UP Indramayu", 452880000], ["PT. Pindo Deli Pulp and Paper Mills", 341137688], ["PT Dua Satu Energi Nusantara", 323942400], ["PT PLN Indonesia Power UBP Priok", 306182400], ["PT. PELANGI LINTAS SEJAHTERA", 275651850], ["PT UNILEVER INDONESIA TBK", 269224062]], "total": 8184958769, "inv": 175, "cust": 75};
+const NS='http://www.w3.org/2000/svg',tip=document.getElementById('tip');
+const fm=v=>v>=1e9?(v/1e9).toFixed(2)+' M':v>=1e6?Math.round(v/1e6)+' jt':'0';
+const full=v=>'Rp '+Math.round(v).toLocaleString('id-ID');
+const el=(p,t,a,txt)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;p.appendChild(e);return e};
+const fmB=v=>v>=1e9?'Rp '+(v/1e9).toFixed(2)+' M':'Rp '+Math.round(v/1e6)+' jt';
+function hover(n,t){n.addEventListener('mousemove',e=>{tip.innerHTML=t;tip.style.opacity=1;tip.style.left=Math.min(e.clientX+12,innerWidth-250)+'px';tip.style.top=e.clientY+12+'px'});n.addEventListener('mouseleave',()=>tip.style.opacity=0)}
+document.getElementById('kpis').innerHTML=[[fmB(D.total),'Total revenue'],[D.inv,'Invoices'],[D.cust,'Customers'],[fmB(D.tiers[0].revenue/D.total*0+D.tiers[0].revenue),'Key accounts ('+Math.round(D.tiers[0].revenue/D.total*100)+'% of revenue)']].map(k=>`<div class="kpi"><b>${k[0]}</b><span>${k[1]}</span></div>`).join('');
+// horizontal bars
+function hbars(id,rows,colors,opt){const W=720,L=opt.L,rh=opt.rh,H=rows.length*rh+10,R=opt.R||110,mx=Math.max(...rows.map(r=>r.v));
+const s=el(document.getElementById(id),'svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':opt.label});
+rows.forEach((r,i)=>{const y=i*rh+5,w=(W-L-R)*r.v/mx;
+el(s,'text',{x:L-8,y:y+rh/2-4,'text-anchor':'end',style:'fill:var(--fg)'},r.n);
+if(r.n2)el(s,'text',{x:L-8,y:y+rh/2+9,'text-anchor':'end'},r.n2);
+const b=el(s,'rect',{x:L,y:y+4,width:w,height:rh-14,rx:4,fill:colors[i%colors.length]});
+el(s,'text',{x:L+w+8,y:y+rh/2+1,style:'fill:var(--fg)'},r.lab);hover(b,r.tip)})}
+hbars('c1',D.tiers.map(t=>({n:t.name.split(' (')[0],n2:'('+t.name.split(' (')[1]+' · '+t.customers+' customers',v:t.revenue,lab:fmB(t.revenue)+' · '+Math.round(t.revenue/D.total*100)+'%',tip:`<b>${t.name}</b><br>${t.customers} customers · ${t.invoices} invoices<br>${full(t.revenue)}`})),['var(--s3)','var(--s2)','var(--s1)'],{L:170,rh:58,R:130,label:'Revenue by customer size'});
+hbars('c3',D.top.map(t=>({n:t[0].replace(/^PT\.? ?/i,'').trim().slice(0,32),v:t[1],lab:fmB(t[1])+' · '+(t[1]/D.total*100).toFixed(1)+'%',tip:`<b>${t[0]}</b><br>${full(t[1])}`})),['var(--c1)'],{L:230,rh:34,R:130,label:'Top 10 customers'});
+// stacked columns
+(function(){const keys=['Commercial','Unassigned','End User'],col=['var(--c1)','var(--c2)','var(--c3)'],M=D.months,W=720,H=300,L=52,B=28,T=10;
+document.getElementById('l2').innerHTML=keys.map((k,i)=>`<span><i style="background:${col[i]}"></i>${k}</span>`).join('');
+const tot=M.map((m,i)=>keys.reduce((a,k)=>a+D.monthly[k][i],0)),mx=Math.ceil(Math.max(...tot)/2.5e8)*2.5e8;
+const s=el(document.getElementById('c2'),'svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'Monthly revenue by customer group'});
+for(let g=0;g<=4;g++){const v=mx*g/4,y=H-B-(H-B-T)*g/4;el(s,'line',{x1:L,x2:W,y1:y,y2:y,stroke:'var(--grid)'});el(s,'text',{x:L-6,y:y+4,'text-anchor':'end'},v?Math.round(v/1e6)+' jt':'0')}
+const bw=(W-L)/M.length;
+M.forEach((m,i)=>{let y=H-B;const x=L+i*bw+bw*.18,w=bw*.64;
+keys.forEach((k,j)=>{const v=D.monthly[k][i];if(!v)return;const h=(H-B-T)*v/mx;y-=h;
+const r=el(s,'rect',{x,y,width:w,height:Math.max(h-2,1),rx:2,fill:col[j]});hover(r,`<b>${k} · ${m}</b><br>${full(v)}`)});
+el(s,'text',{x:x+w/2,y:H-10,'text-anchor':'middle'},['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m.slice(5)-1]+(m.slice(5)==='01'||i===0?" '"+m.slice(2,4):''))})})();
+</script>
