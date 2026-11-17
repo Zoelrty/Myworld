@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sales Bar Charts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root{--bg:#f7f8fa;--surface:#fff;--fg:#1b2430;--muted:#5d6a7a;--grid:#e3e7ec;--bar:#2a6f97;--bar-hi:#1b4f70;--partial:#a9c8dc;--tip:#1b2430;--tipfg:#fff;font-family:Inter,system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f141a;--surface:#161d26;--fg:#e8edf2;--muted:#93a1b1;--grid:#26303c;--bar:#5fa8d3;--bar-hi:#8cc4e6;--partial:#33566d;--tip:#e8edf2;--tipfg:#0f141a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f141a;--surface:#161d26;--fg:#e8edf2;--muted:#93a1b1;--grid:#26303c;--bar:#5fa8d3;--bar-hi:#8cc4e6;--partial:#33566d;--tip:#e8edf2;--tipfg:#0f141a;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font-size:14px}
+main{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1{font-size:24px;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0;max-width:65ch}
+section{background:var(--surface);border:1px solid var(--grid);border-radius:10px;padding:16px;min-width:0}
+h2{font-size:16px;margin:0 0 2px}
+.note{color:var(--muted);font-size:12px;margin:0 0 8px}
+.wrap{overflow-x:auto}
+svg{display:block;width:100%;height:auto;min-width:340px}
+svg text{fill:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+svg .val{fill:var(--fg);font-weight:600}
+.bar{fill:var(--bar)}.bar.p{fill:var(--partial)}
+.hit:hover+.bar,.hit:focus+.bar{fill:var(--bar-hi)}
+.hit{fill:transparent;cursor:default;outline:none}
+#tip{position:fixed;pointer-events:none;background:var(--tip);color:var(--tipfg);padding:6px 9px;border-radius:6px;font-size:12px;line-height:1.4;opacity:0;z-index:5;transition:opacity .1s}
+.foot{color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<main>
+<div><h1>Sales by month, quarter and year</h1>
+<p class="sub">Net sales from submitted Sales Invoices in ERPNext, in millions of company currency. Lighter bars are periods still in progress (as of 17 Nov 2026).</p></div>
+<section><h2>Monthly</h2><p class="note">Net sales per month</p><div class="wrap" id="m"></div></section>
+<section><h2>Quarterly</h2><p class="note">Net sales per quarter</p><div class="wrap" id="q"></div></section>
+<section><h2>Yearly</h2><p class="note">2025 starts in August; 2026 runs to 17 Nov</p><div class="wrap" id="y"></div></section>
+<p class="foot">Net = before tax. Hover a bar for invoice count and gross total.</p>
+</main>
+<div id="tip"></div>
+<script>
+const M=[["Aug 25",2,167000000,185370000],["Sep 25",9,337075000,374153250],["Oct 25",19,247509600,274735656],["Nov 25",13,381238000,423174180],["Dec 25",10,173754200,192867162],["Jan 26",14,318290500,353302455],["Feb 26",13,300897000,326515670],["Mar 26",16,465573000,516786030],["Apr 26",13,785658000,872080380],["May 26",16,215150750,238817333],["Jun 26",25,900538628,999597877],["Jul 26",13,935573900,1038487029],["Aug 26",16,647740694,718992170],["Sep 26",12,1077458796,1195979264],["Oct 26",13,1029830000,1143111300],["Nov 26*",8,402075000,446303250,1]];
+const Q=[["2025 Q3",11,504075000,559523250],["2025 Q4",42,802501800,890776998],["2026 Q1",43,1084760500,1196604155],["2026 Q2",54,1901347378,2110495590],["2026 Q3",41,2660773390,2953458463],["2026 Q4*",21,1431905000,1589414550,1]];
+const Y=[["2025",53,1306576800,1450300248],["2026*",159,7078786268,7849972757,1]];
+const f=n=>Math.round(n/1e6).toLocaleString("en-US");
+const tip=document.getElementById("tip");
+function nice(max){const p=Math.pow(10,Math.floor(Math.log10(max)));for(const s of [1,2,2.5,5,10]){if(s*p>=max)return s*p}}
+function chart(id,d,labelAll){
+ const W=760,H=300,L=52,R=8,T=18,B=34,mx=nice(Math.max(...d.map(x=>x[2]))*1.05);
+ const bw=(W-L-R)/d.length,w=Math.min(bw*0.62,70);
+ let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Bar chart of net sales">`;
+ for(let i=0;i<=4;i++){const v=mx*i/4,y=T+(H-T-B)*(1-i/4);
+  s+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="var(--grid)"/><text x="${L-6}" y="${y+4}" text-anchor="end">${f(v)}</text>`}
+ d.forEach((x,i)=>{const h=(H-T-B)*x[2]/mx,cx=L+bw*i+bw/2,y=H-B-h;
+  s+=`<g><rect class="hit" tabindex="0" x="${L+bw*i}" y="${T}" width="${bw}" height="${H-T-B}" data-i="${i}"/>
+  <path class="bar${x[4]?" p":""}" d="M${cx-w/2},${H-B}V${y+4}a4,4 0 0 1 4,-4H${cx+w/2-4}a4,4 0 0 1 4,4V${H-B}Z"/>`;
+  if(labelAll)s+=`<text class="val" x="${cx}" y="${y-5}" text-anchor="middle">${f(x[2])}</text>`;
+  s+=`<text x="${cx}" y="${H-B+16}" text-anchor="middle">${x[0]}</text></g>`});
+ s+="</svg>";
+ const el=document.getElementById(id);el.innerHTML=s;
+ el.querySelectorAll(".hit").forEach(h=>{const x=d[h.dataset.i];
+  const show=e=>{tip.innerHTML=`<b>${x[0].replace("*","")}</b><br>Net ${f(x[2])}M<br>Gross ${f(x[3])}M<br>${x[1]} invoices`;
+   const r=h.getBoundingClientRect();let px=e.clientX||r.left+r.width/2,py=e.clientY||r.top;
+   tip.style.left=Math.min(px+12,innerWidth-140)+"px";tip.style.top=Math.max(py-70,8)+"px";tip.style.opacity=1};
+  h.addEventListener("mousemove",show);h.addEventListener("focus",show);
+  h.addEventListener("mouseleave",()=>tip.style.opacity=0);h.addEventListener("blur",()=>tip.style.opacity=0)})}
+chart("m",M,false);chart("q",Q,true);chart("y",Y,true);
+</script>
+</body>
+</html>
