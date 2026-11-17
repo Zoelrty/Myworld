@@ -39,3 +39,4 @@ h2{margin-top:2rem}
 .chart .bar i{display:block;height:100%;background:var(--accent)}
 .chart.alt .bar i{background:#f59e0b}
 .chart .val{text-align:right;font-variant-numeric:tabular-nums}
+.category{margin:0 0 1rem;font-size:1.1rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
