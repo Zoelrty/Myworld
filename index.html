@@ -10,11 +10,11 @@
 <body>
   <header class="site-header">
     <a class="brand" href="#home">Jeremy</a>
-    <nav>
+    <nav aria-label="Main">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
-      <button id="theme-toggle" aria-label="Toggle theme">◐</button>
+      <button id="theme-toggle" type="button" aria-label="Toggle theme">◐</button>
     </nav>
   </header>
 
@@ -23,15 +23,18 @@
       <h1>Hi, I'm <span class="accent">Jeremy</span>.</h1>
       <p>Project manager for the filter.</p>
       <a class="btn" href="#projects">See my work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
     </section>
 
     <section id="about">
       <h2>About</h2>
+      <!-- TODO: expand with your background, what you do day to day, interests -->
       <p>I'm Jeremy, a project manager for the filter.</p>
     </section>
 
     <section id="projects">
       <h2>Projects</h2>
+      <!-- TODO: replace placeholder cards with real projects (title, one-line summary, link) -->
       <div class="grid">
         <article class="card"><h3>Project One</h3><p>A short description of this project.</p></article>
         <article class="card"><h3>Project Two</h3><p>A short description of this project.</p></article>
@@ -41,7 +44,8 @@
 
     <section id="contact">
       <h2>Contact</h2>
-      <p>Say hello: <a href="mailto:you@example.com">you@example.com</a></p>
+      <p>Say hello: <!-- TODO: put your real email here -->
+      <a href="mailto:you@example.com">you@example.com</a></p>
     </section>
   </main>
 
