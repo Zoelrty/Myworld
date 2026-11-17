@@ -5,7 +5,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--fg)}
 a{color:var(--accent)}
-.site-header{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg)}
+.site-header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.5rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg)}
 .brand{font-weight:700;text-decoration:none;color:var(--fg)}
 nav{display:flex;gap:1rem;align-items:center}
 nav a{text-decoration:none;color:var(--muted)}
