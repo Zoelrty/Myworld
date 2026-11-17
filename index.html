@@ -13,6 +13,7 @@
     <nav>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
+      <a href="#voucher">Voucher</a>
       <a href="#contact">Contact</a>
       <button id="theme-toggle" aria-label="Toggle theme">◐</button>
     </nav>
@@ -37,6 +38,30 @@
         <article class="card"><h3>Project Two</h3><p>A short description of this project.</p></article>
         <article class="card"><h3>Project Three</h3><p>A short description of this project.</p></article>
       </div>
+    </section>
+
+    <section id="voucher">
+      <h2>Payment Voucher</h2>
+      <form class="voucher" onsubmit="return false">
+        <style>
+          .voucher{display:grid;gap:.6rem;max-width:640px;border:1px solid currentColor;padding:1rem;border-radius:8px}
+          .voucher label{display:grid;gap:.2rem;font-size:.9rem}
+          .voucher input,.voucher select,.voucher textarea{padding:.4rem;font:inherit}
+          @media print{.site-header,footer,section:not(#voucher),.voucher button{display:none}}
+        </style>
+        <label>Voucher No. <input name="no"></label>
+        <label>Date <input type="date" name="date"></label>
+        <label>Pay to <input name="payee"></label>
+        <label>Amount <input name="amount" inputmode="decimal"></label>
+        <label>Currency <input name="currency"></label>
+        <label>Being payment for <textarea name="purpose" rows="3"></textarea></label>
+        <label>Method <select name="method"><option>Cash</option><option>Bank transfer</option><option>Cheque</option></select></label>
+        <label>Reference / bank details <input name="ref"></label>
+        <label>Prepared by <input name="prep"></label>
+        <label>Approved by <input name="appr"></label>
+        <label>Received by (signature) <input name="recv"></label>
+        <button type="button" onclick="window.print()">Print / Save as PDF</button>
+      </form>
     </section>
 
     <section id="contact">
