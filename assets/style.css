@@ -30,3 +30,12 @@ footer{text-align:center;padding:2rem;color:var(--muted);border-top:1px solid va
 .report .info strong{font-size:1.2rem}
 .report small{color:var(--muted)}
 .report .go{font-size:1.5rem;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.5rem 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem}
+.kpi small{display:block;color:var(--muted)}.kpi strong{font-size:1.5rem}
+h2{margin-top:2rem}
+.chart .row{display:grid;grid-template-columns:5.5rem 1fr 6rem;gap:.6rem;align-items:center;margin:.3rem 0;font-size:.9rem}
+.chart .bar{background:var(--border);border-radius:4px;height:14px;overflow:hidden}
+.chart .bar i{display:block;height:100%;background:var(--accent)}
+.chart.alt .bar i{background:#f59e0b}
+.chart .val{text-align:right;font-variant-numeric:tabular-nums}
