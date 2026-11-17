@@ -3,49 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jeremy</title>
-  <meta name="description" content="Personal website">
+  <title>Jeremy – Reports</title>
+  <meta name="description" content="Report index">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#home">Jeremy</a>
-    <nav aria-label="Main">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <button id="theme-toggle" type="button" aria-label="Toggle theme">◐</button>
-    </nav>
+    <a class="brand" href="index.html">Jeremy</a>
+    <button id="theme-toggle" type="button" aria-label="Toggle theme">◐</button>
   </header>
 
   <main>
-    <section id="home" class="hero">
-      <h1>Hi, I'm <span class="accent">Jeremy</span>.</h1>
-      <p>Project manager for the filter.</p>
-      <a class="btn" href="#projects">See my work</a>
-      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    <section class="hero">
+      <h1>Reports</h1>
+      <p>Project manager for the filter. Pick a report below.</p>
     </section>
 
-    <section id="about">
-      <h2>About</h2>
-      <!-- TODO: expand with your background, what you do day to day, interests -->
-      <p>I'm Jeremy, a project manager for the filter.</p>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <!-- TODO: replace placeholder cards with real projects (title, one-line summary, link) -->
-      <div class="grid">
-        <article class="card"><h3>Project One</h3><p>A short description of this project.</p></article>
-        <article class="card"><h3>Project Two</h3><p>A short description of this project.</p></article>
-        <article class="card"><h3>Project Three</h3><p>A short description of this project.</p></article>
+    <section aria-label="Report index">
+      <div class="reports">
+      <a class="report" href="reports/sales.html">
+        <span class="num">1</span>
+        <span class="info"><strong>Sales Report</strong><small>Revenue, orders and sales performance.</small></span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a class="report" href="reports/payment.html">
+        <span class="num">2</span>
+        <span class="info"><strong>Payment Report</strong><small>Payments received, outstanding and overdue.</small></span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a class="report" href="reports/crm.html">
+        <span class="num">3</span>
+        <span class="info"><strong>CRM Report</strong><small>Customers, leads and pipeline.</small></span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
       </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Say hello: <!-- TODO: put your real email here -->
-      <a href="mailto:you@example.com">you@example.com</a></p>
+      <!-- To add a report: copy one <a class="report"> block, bump the number, point href to a new page in reports/ -->
     </section>
   </main>
 

@@ -22,3 +22,11 @@ section{padding:3rem 0}
 .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem}
 .card h3{margin-top:0}
 footer{text-align:center;padding:2rem;color:var(--muted);border-top:1px solid var(--border)}
+.reports{display:grid;gap:1rem}
+.report{display:flex;align-items:center;gap:1.2rem;padding:1.4rem 1.5rem;background:var(--card);border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--fg);transition:border-color .15s,transform .15s}
+.report:hover{border-color:var(--accent);transform:translateY(-2px)}
+.report .num{font-size:2rem;font-weight:700;color:var(--accent);min-width:2.5rem}
+.report .info{display:flex;flex-direction:column;flex:1}
+.report .info strong{font-size:1.2rem}
+.report small{color:var(--muted)}
+.report .go{font-size:1.5rem;color:var(--muted)}
