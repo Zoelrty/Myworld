@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jeremy – Reports</title>
-  <meta name="description" content="Report index">
+  <title>Jeremy</title>
+  <meta name="description" content="Personal website">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -14,31 +14,51 @@
   </header>
 
   <main>
-    <section class="hero">
-      <h1>Reports</h1>
-      <p>Project manager for the filter. Pick a report below.</p>
+    <section id="home" class="hero">
+      <h1>Hi, I'm <span class="accent">Jeremy</span>.</h1>
+      <p>Project manager for the filter.</p>
     </section>
 
-    <section aria-label="Report index">
-      <h2 class="category">Power BI</h2>
+    <section id="reports" aria-label="Report index">
+      <h2>Reports</h2>
+      <h3 class="category">Power BI</h3>
       <div class="reports">
-      <a class="report" href="reports/sales.html">
-        <span class="num">R01</span>
-        <span class="info"><strong>Revenue Report: Sales</strong><small>Revenue, orders and sales performance.</small></span>
-        <span class="go" aria-hidden="true">→</span>
-      </a>
-      <a class="report" href="reports/payment.html">
-        <span class="num">R02</span>
-        <span class="info"><strong>Revenue Report: Payments</strong><small>Payments received, outstanding and overdue.</small></span>
-        <span class="go" aria-hidden="true">→</span>
-      </a>
-      <a class="report" href="reports/crm.html">
-        <span class="num">R03</span>
-        <span class="info"><strong>CRM Report</strong><small>Customers, leads and pipeline.</small></span>
-        <span class="go" aria-hidden="true">→</span>
-      </a>
+        <a class="report" href="sales-report.html">
+          <span class="num">R01</span>
+          <span class="info"><strong>Sales Report 2026</strong><small>Monthly sales from the ERP (PFIT &amp; FITT).</small><small>R01-T01</small></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+        <a class="report" href="sales.html">
+          <span class="num">R02</span>
+          <span class="info"><strong>Sales Charts</strong><small>Bar charts of net sales by month, quarter and year.</small><small>R02-C01 Monthly · R02-C02 Quarterly · R02-C03 Yearly</small></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+        <a class="report" href="reports/crm.html">
+          <span class="num">R03</span>
+          <span class="info"><strong>CRM Report</strong><small>Customers, leads and pipeline.</small><small>R03-T01</small></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
       </div>
-      <!-- To add a category: copy the <h2 class="category"> and the <div class="reports"> below it. To add a report: copy one <a class="report"> block, bump the number, point href to a new page in reports/ -->
+      <!-- To add a report: copy one <a class="report"> block, use the next R number. To add a category: copy the <h3 class="category"> and the <div class="reports"> below it. -->
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>I'm Jeremy, a project manager for the filter.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+        <article class="card"><h3>Project One</h3><p>A short description of this project.</p></article>
+        <article class="card"><h3>Project Two</h3><p>A short description of this project.</p></article>
+        <article class="card"><h3>Project Three</h3><p>A short description of this project.</p></article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Say hello: <a href="mailto:you@example.com">you@example.com</a></p>
     </section>
   </main>
 
