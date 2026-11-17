@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sales Report 2026</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .tablewrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+    th,td{padding:.5rem .7rem;border-bottom:1px solid var(--border);text-align:right;white-space:nowrap}
+    th:first-child,td:first-child{text-align:left}
+    tfoot td{font-weight:700}
+    .note{color:var(--muted);font-size:.9rem}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Jeremy</a>
+    <nav><a href="index.html">Home</a></nav>
+  </header>
+  <main>
+    <section>
+      <h1>Sales Report 2026</h1>
+      <p class="note">Sales Invoice Summary, PT Filtec Indo Teknologi. 1 Jan – 17 Nov 2026. Source: ERPNext. Amounts in Rp millions.</p>
+      <div class="tablewrap">
+        <table id="report">
+          <thead><tr><th>Month</th><th>PFIT #</th><th>PFIT (Rp M)</th><th>FITT #</th><th>FITT (Rp M)</th><th>Total #</th><th>Total (Rp M)</th></tr></thead>
+          <tbody></tbody><tfoot></tfoot>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script>
+    const rows = [
+      ["Jan",12,81341355.0,2,271961100.0],
+      ["Feb",10,169660170.0,3,156855500.0],
+      ["Mar",13,124466520.0,3,392319510.0],
+      ["Apr",11,210888900.0,2,661191480.0],
+      ["May",15,203835682.5,1,34981650.0],
+      ["Jun",19,225448357.08,6,774149520.0],
+      ["Jul",10,187169754.0,3,851317275.0],
+      ["Aug",13,81659370.0,3,637332799.9848],
+      ["Sep",7,32689500.0,5,1163289763.56],
+      ["Oct",6,20290800.0,7,1122820500.0],
+      ["Nov (to 17th)",5,61299750.0,3,385003500.0]
+    ];
+    const m = v => (v/1e6).toLocaleString("en-US",{minimumFractionDigits:1,maximumFractionDigits:1});
+    const line = (l,a,b,c,d) => `<tr><td>${l}</td><td>${a}</td><td>${m(b)}</td><td>${c}</td><td>${m(d)}</td><td>${a+c}</td><td>${m(b+d)}</td></tr>`;
+    document.querySelector("tbody").innerHTML = rows.map(r => line(...r)).join("");
+    const t = rows.reduce((s,r)=>[s[0]+r[1],s[1]+r[2],s[2]+r[3],s[3]+r[4]],[0,0,0,0]);
+    document.querySelector("tfoot").innerHTML = line("Total",...t);
+  </script>
+</body>
+</html>

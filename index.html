@@ -9,20 +9,37 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#home">Jeremy</a>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <button id="theme-toggle" aria-label="Toggle theme">◐</button>
-    </nav>
+    <a class="brand" href="index.html">Jeremy</a>
+    <button id="theme-toggle" type="button" aria-label="Toggle theme">◐</button>
   </header>
 
   <main>
     <section id="home" class="hero">
       <h1>Hi, I'm <span class="accent">Jeremy</span>.</h1>
       <p>Project manager for the filter.</p>
-      <a class="btn" href="#projects">See my work</a>
+    </section>
+
+    <section id="reports" aria-label="Report index">
+      <h2>Reports</h2>
+      <h3 class="category">Power BI</h3>
+      <div class="reports">
+        <a class="report" href="sales-report.html">
+          <span class="num">R01</span>
+          <span class="info"><strong>Sales Report 2026</strong><small>Monthly sales from the ERP (PFIT &amp; FITT).</small><small>R01-T01</small></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+        <a class="report" href="sales.html">
+          <span class="num">R02</span>
+          <span class="info"><strong>Sales Charts</strong><small>Bar charts of net sales by month, quarter and year.</small><small>R02-C01 Monthly · R02-C02 Quarterly · R02-C03 Yearly</small></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+        <a class="report" href="reports/crm.html">
+          <span class="num">R03</span>
+          <span class="info"><strong>CRM Report</strong><small>Customers, leads and pipeline.</small><small>R03-T01</small></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+      </div>
+      <!-- To add a report: copy one <a class="report"> block, use the next R number. To add a category: copy the <h3 class="category"> and the <div class="reports"> below it. -->
     </section>
 
     <section id="about">
